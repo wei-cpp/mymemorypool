@@ -98,10 +98,10 @@ namespace memory_pool {
         }
 
         // 申请一块内存
-        void allocate(memory_span memory){ m_allocated_unit_count ++;}
+        void allocate(memory_span memory);
 
         // 把这一块内存归还给页面
-        void deallocate(memory_span memory){ m_allocated_unit_count --;}
+        void deallocate(memory_span memory);
 
         // 判断某一段空间是不是被这个管理的
         bool is_valid_unit_span(memory_span memory);
