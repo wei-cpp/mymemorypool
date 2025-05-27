@@ -19,6 +19,7 @@ namespace memory_pool
 
         // 大小对齐到8byte
         size = size_utils::align(size);
+        // 大内存直接向下传递
         if (size > size_utils::MAX_CACHED_UNIT_SIZE)
         {
             return allocate_from_central_cache(size).and_then([](std::byte *memory_addr)
@@ -35,6 +36,7 @@ namespace memory_pool
 
             return result;
         }
+        // 如果当前的桶中没有空闲内存，则从central_cache中申请
         return allocate_from_central_cache(size).and_then([](std::byte *memory_addr)
                                                               { return std::optional<void *>(memory_addr); });
     }
@@ -46,11 +48,14 @@ namespace memory_pool
             return;
         }
         size = size_utils::align(size);
+
+        //大内存直接向下传递
         if(size>size_utils::MAX_CACHED_UNIT_SIZE){
             central_cache::GetInstance().deallocate(reinterpret_cast<std::byte*>(start_p),size);
             return;
         }
 
+        // 小内存直接放入桶中
         const size_t index =size_utils::get_index(size);
         *(reinterpret_cast<std::byte**>(start_p))= m_free_cache[index];
         m_free_cache[index]=reinterpret_cast<std::byte*>(start_p);

@@ -3,7 +3,7 @@
 #ifndef THREAD_CACHE_H
 #define THREAD_CACHE_H
 
-#include "utils.h"  // 把 utils.h 移到最前面，因为其他头文件可能依赖它
+#include "utils.h"  
 #include <array>
 #include <list>
 #include <optional>
@@ -31,16 +31,18 @@ private:
     thread_cache() = default;
     // 向高层申请一块空间
     std::optional<std::byte*> allocate_from_central_cache(size_t memory_size);
-    // 指定下标存放的大小
+     // 动态分配内存
+    size_t compute_allocate_count(size_t memory_size);
+private:
+    // 指定下标存放的大小 每个桶中元素的个数
     std::array<size_t, size_utils::CACHE_LINE_SIZE> m_free_cache_size = {};
-    // 当前还没有被分配的内存
+    // 空闲内存桶  每个桶中都是一条链表
     std::array<std::byte*, size_utils::CACHE_LINE_SIZE> m_free_cache = {};
 
     // 用于表示下一次再申请指定大小的内存时，会申请几个内存
     std::array<size_t, size_utils::CACHE_LINE_SIZE> m_next_allocate_count = {};
 
-    // 动态分配内存
-    size_t compute_allocate_count(size_t memory_size);
+
 };
 
 } // namespace memory_pool

@@ -47,7 +47,7 @@ namespace memory_pool
 
         // 回收内存，只有在析构函数中调用
         void system_deallocate_memory(memory_span page);
-
+    private:
         //按页数存储空闲 span
         std::map<size_t, std::set<memory_span>> free_page_store = {};
 
