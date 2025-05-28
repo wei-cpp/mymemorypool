@@ -11,7 +11,6 @@
 
 namespace memory_pool {
 
-    //自旋锁
     class atomic_flag_guard {
     public:
         explicit atomic_flag_guard(std::atomic_flag& flag):m_flag(flag) {
@@ -61,9 +60,8 @@ namespace memory_pool {
         //static constexpr size_t CACHE_LINE_SIZE = 64;
         // 这个值就是缓存的最大的内容
         static constexpr size_t MAX_CACHED_UNIT_SIZE = 16 * 1024; // 16KB 为大内存的临界点
-        //16*1024/8=2048
         static constexpr size_t CACHE_LINE_SIZE = MAX_CACHED_UNIT_SIZE / ALIGNMENT;
-        // 内存字节数对齐，对齐成8的倍数，8字节也是内存池最小的分配大小
+        /// 内存字节数对齐，对齐成8的倍数，8字节也是内存池最小的分配大小
         static size_t align(const size_t memory_size, const size_t alignment = ALIGNMENT) {
             return (memory_size + alignment - 1) & ~(alignment - 1);
         }
@@ -82,7 +80,7 @@ namespace memory_pool {
 #ifndef NDEBUG
     class page_span {
     public:
-        // 4096 / 8 = 512
+        // 4096 / 8 = 512。考虑到32位的系统，这里就使用了静态变量。
         static constexpr size_t MAX_UNIT_COUNT = size_utils::PAGE_SIZE / size_utils::ALIGNMENT;
         /// 初始化这个page_span
         /// 参数：span:这个page_span管理的空间，unit_size

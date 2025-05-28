@@ -1,0 +1,1478 @@
+desc: --massif-out-file=massif.out
+cmd: ./build_debug/memory_pool_benchmark
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=165900194
+mem_heap_B=17216187
+mem_heap_extra_B=133085
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=393319672
+mem_heap_B=28549062
+mem_heap_extra_B=218002
+mem_stacks_B=0
+heap_tree=detailed
+n4: 28549062 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 27733361 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 27733361 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 27733361 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 27733361 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 27733361 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 27733361 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 27733361 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 27733361 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 27733361 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 27733361 0x4D01A03: clone (clone.S:100)
+ n1: 393216 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 393216 0x111DA5: allocate (allocator.h:198)
+   n1: 393216 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 393216 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 393216 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 393216 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 393216 in 2 places, all below massif's threshold (1.00%)
+ n1: 344064 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 344064 0x1136CE: allocate (allocator.h:198)
+   n1: 344064 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 344064 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 344064 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 344064 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 344064 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 344064 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 344064 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 344064 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 344064 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 344064 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 344064 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 344064 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 344064 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 344064 0x4D01A03: clone (clone.S:100)
+ n0: 78421 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=3
+#-----------
+time=491132463
+mem_heap_B=37165298
+mem_heap_extra_B=284550
+mem_stacks_B=0
+heap_tree=detailed
+n4: 37165298 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 36251293 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 36251293 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 36251293 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 36251293 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 36251293 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 36251293 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 36251293 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 36251293 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 36251293 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 36251293 0x4D01A03: clone (clone.S:100)
+ n1: 442368 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 442368 0x1136CE: allocate (allocator.h:198)
+   n1: 442368 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 442368 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 442368 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 442368 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 442368 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 442368 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 442368 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 442368 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 442368 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 442368 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 442368 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 442368 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 442368 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 442368 0x4D01A03: clone (clone.S:100)
+ n1: 393216 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 393216 0x111DA5: allocate (allocator.h:198)
+   n1: 393216 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 393216 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 393216 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 393216 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 393216 in 2 places, all below massif's threshold (1.00%)
+ n0: 78421 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=4
+#-----------
+time=671710410
+mem_heap_B=44868342
+mem_heap_extra_B=342970
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=784560362
+mem_heap_B=48265122
+mem_heap_extra_B=368422
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=945431503
+mem_heap_B=51965718
+mem_heap_extra_B=398106
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=1092627599
+mem_heap_B=61701820
+mem_heap_extra_B=475300
+mem_stacks_B=0
+heap_tree=detailed
+n4: 61701820 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 60197991 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 60197991 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 60197991 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 60197991 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 60197991 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 60197991 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 60197991 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 60197991 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 60197991 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 60197991 0x4D01A03: clone (clone.S:100)
+ n1: 786432 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 786432 0x111DA5: allocate (allocator.h:198)
+   n1: 786432 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 786432 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 786432 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 786432 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 786432 in 2 places, all below massif's threshold (1.00%)
+ n1: 638976 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 638976 0x1136CE: allocate (allocator.h:198)
+   n1: 638976 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 638976 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 638976 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 638976 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 638976 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 638976 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 638976 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 638976 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 638976 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 638976 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 638976 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 638976 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 638976 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 638976 0x4D01A03: clone (clone.S:100)
+ n0: 78421 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=8
+#-----------
+time=1254910440
+mem_heap_B=70154461
+mem_heap_extra_B=539811
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=1417873431
+mem_heap_B=76011690
+mem_heap_extra_B=585158
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=1549920189
+mem_heap_B=79673308
+mem_heap_extra_B=611508
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=1699969445
+mem_heap_B=83534849
+mem_heap_extra_B=640799
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=1852401096
+mem_heap_B=86924148
+mem_heap_extra_B=668036
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=1962077892
+mem_heap_B=89263444
+mem_heap_extra_B=685692
+mem_stacks_B=0
+heap_tree=detailed
+n4: 89263444 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 86776575 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 86776575 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 86776575 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 86776575 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 86776575 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 86776575 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 86776575 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 86776575 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 86776575 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 86776575 0x4D01A03: clone (clone.S:100)
+ n1: 1310720 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1310720 0x111DA5: allocate (allocator.h:198)
+   n1: 1310720 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 1310720 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1310720 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 1310720 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n1: 1048576 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 1048576 0x10BC15: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:111)
+         n1: 1048576 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1048576 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1048576 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1048576 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1048576 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1048576 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1048576 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1048576 0x4D01A03: clone (clone.S:100)
+       n0: 262144 in 1 place, below massif's threshold (1.00%)
+ n1: 1097728 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1097728 0x1136CE: allocate (allocator.h:198)
+   n1: 1097728 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 1097728 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1097728 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 1097728 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 1097728 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 1097728 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 1097728 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1097728 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1097728 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1097728 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1097728 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1097728 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1097728 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1097728 0x4D01A03: clone (clone.S:100)
+ n0: 78421 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=14
+#-----------
+time=2109523256
+mem_heap_B=98841537
+mem_heap_extra_B=756855
+mem_stacks_B=0
+heap_tree=detailed
+n4: 98841537 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 96026988 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 96026988 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 96026988 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 96026988 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 96026988 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 96026988 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 96026988 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 96026988 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 96026988 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 96026988 0x4D01A03: clone (clone.S:100)
+ n1: 1572864 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1572864 0x111DA5: allocate (allocator.h:198)
+   n1: 1572864 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 1572864 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1572864 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 1572864 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n1: 1048576 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 1048576 0x10BC15: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:111)
+         n1: 1048576 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1048576 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1048576 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1048576 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1048576 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1048576 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1048576 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1048576 0x4D01A03: clone (clone.S:100)
+       n0: 524288 in 1 place, below massif's threshold (1.00%)
+ n1: 1163264 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1163264 0x1136CE: allocate (allocator.h:198)
+   n1: 1163264 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 1163264 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1163264 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 1163264 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 1163264 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 1163264 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 1163264 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1163264 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1163264 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1163264 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1163264 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1163264 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1163264 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1163264 0x4D01A03: clone (clone.S:100)
+ n0: 78421 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=15
+#-----------
+time=2281340478
+mem_heap_B=107957647
+mem_heap_extra_B=829073
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=2490596521
+mem_heap_B=113520019
+mem_heap_extra_B=872253
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=2635241145
+mem_heap_B=116006235
+mem_heap_extra_B=891005
+mem_stacks_B=0
+heap_tree=detailed
+n4: 116006235 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 112995078 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 112995078 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 112995078 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 112995078 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 112995078 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 112995078 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 112995078 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 112995078 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 112995078 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 112995078 0x4D01A03: clone (clone.S:100)
+ n1: 1572864 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1572864 0x111DA5: allocate (allocator.h:198)
+   n1: 1572864 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 1572864 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1572864 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 1572864 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 1572864 in 2 places, all below massif's threshold (1.00%)
+ n1: 1359872 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1359872 0x1136CE: allocate (allocator.h:198)
+   n1: 1359872 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 1359872 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1359872 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 1359872 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 1359872 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 1359872 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 1359872 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1359872 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1359872 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1359872 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1359872 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1359872 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1359872 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1359872 0x4D01A03: clone (clone.S:100)
+ n0: 78421 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=18
+#-----------
+time=2882099849
+mem_heap_B=137504794
+mem_heap_extra_B=1059134
+mem_stacks_B=0
+heap_tree=detailed
+n4: 137504794 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 134275813 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 134275813 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 134275813 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 134275813 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 134275813 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 134275813 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 134275813 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 134275813 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 134275813 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 134275813 0x4D01A03: clone (clone.S:100)
+ n1: 1576992 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1576992 0x1136CE: allocate (allocator.h:198)
+   n1: 1576992 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 1576992 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1576992 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 1576992 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 1576992 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 1576992 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 1576992 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1576992 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1576992 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1576992 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1576992 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1576992 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1576992 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1576992 0x4D01A03: clone (clone.S:100)
+ n1: 1572864 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1572864 0x111DA5: allocate (allocator.h:198)
+   n1: 1572864 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 1572864 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1572864 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 1572864 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 1572864 in 2 places, all below massif's threshold (1.00%)
+ n0: 79125 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=19
+#-----------
+time=3024720747
+mem_heap_B=145987196
+mem_heap_extra_B=1125252
+mem_stacks_B=0
+heap_tree=detailed
+n4: 145987196 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 142692679 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 142692679 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 142692679 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 142692679 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 142692679 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 142692679 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 142692679 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 142692679 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 142692679 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 142692679 0x4D01A03: clone (clone.S:100)
+ n1: 1642528 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1642528 0x1136CE: allocate (allocator.h:198)
+   n1: 1642528 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 1642528 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1642528 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 1642528 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 1642528 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 1642528 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 1642528 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1642528 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1642528 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1642528 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1642528 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1642528 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1642528 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1642528 0x4D01A03: clone (clone.S:100)
+ n1: 1572864 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1572864 0x111DA5: allocate (allocator.h:198)
+   n1: 1572864 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 1572864 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1572864 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 1572864 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 1572864 in 2 places, all below massif's threshold (1.00%)
+ n0: 79125 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=20
+#-----------
+time=3249983859
+mem_heap_B=154429043
+mem_heap_extra_B=1189997
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=3424730257
+mem_heap_B=158786580
+mem_heap_extra_B=1216972
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=3660953294
+mem_heap_B=162347733
+mem_heap_extra_B=1244923
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=3804637897
+mem_heap_B=165159614
+mem_heap_extra_B=1268514
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=3938669680
+mem_heap_B=168402056
+mem_heap_extra_B=1294432
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=4094354076
+mem_heap_B=171692722
+mem_heap_extra_B=1320158
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=4283195851
+mem_heap_B=175499695
+mem_heap_extra_B=1348145
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=4465292015
+mem_heap_B=179026048
+mem_heap_extra_B=1374488
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=4684499730
+mem_heap_B=183441337
+mem_heap_extra_B=1408247
+mem_stacks_B=0
+heap_tree=detailed
+n4: 183441337 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 178705028 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 178705028 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 178705028 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 178705028 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 178705028 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 178705028 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 178705028 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 178705028 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 178705028 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 178705028 0x4D01A03: clone (clone.S:100)
+ n1: 2621440 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 2621440 0x111DA5: allocate (allocator.h:198)
+   n1: 2621440 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 2621440 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 2621440 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 2621440 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n1: 2097152 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 2097152 0x10BC15: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:111)
+         n1: 2097152 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2097152 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2097152 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2097152 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2097152 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2097152 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2097152 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2097152 0x4D01A03: clone (clone.S:100)
+       n0: 524288 in 1 place, below massif's threshold (1.00%)
+ n1: 2035744 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 2035744 0x1136CE: allocate (allocator.h:198)
+   n1: 2035744 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 2035744 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 2035744 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 2035744 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 2035744 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 2035744 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 2035744 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2035744 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2035744 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2035744 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2035744 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2035744 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2035744 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2035744 0x4D01A03: clone (clone.S:100)
+ n0: 79125 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=29
+#-----------
+time=4843767246
+mem_heap_B=194792233
+mem_heap_extra_B=1491703
+mem_stacks_B=0
+heap_tree=detailed
+n4: 194792233 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 189466116 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 189466116 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 189466116 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 189466116 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 189466116 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 189466116 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 189466116 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 189466116 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 189466116 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 189466116 0x4D01A03: clone (clone.S:100)
+ n1: 3145728 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 3145728 0x111DA5: allocate (allocator.h:198)
+   n1: 3145728 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 3145728 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 3145728 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 3145728 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n1: 2097152 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 2097152 0x10BC15: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:111)
+         n1: 2097152 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2097152 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2097152 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2097152 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2097152 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2097152 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2097152 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2097152 0x4D01A03: clone (clone.S:100)
+       n0: 1048576 in 1 place, below massif's threshold (1.00%)
+ n1: 2101264 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 2101264 0x1136CE: allocate (allocator.h:198)
+   n1: 2101264 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 2101264 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 2101264 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 2101264 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 2101264 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 2101264 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 2101264 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2101264 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2101264 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2101264 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2101264 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2101264 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2101264 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2101264 0x4D01A03: clone (clone.S:100)
+ n0: 79125 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=30
+#-----------
+time=5029937171
+mem_heap_B=195995048
+mem_heap_extra_B=1500256
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=5206362806
+mem_heap_B=198718207
+mem_heap_extra_B=1521969
+mem_stacks_B=0
+heap_tree=detailed
+n4: 198718207 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 193359370 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 193359370 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 193359370 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 193359370 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 193359370 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 193359370 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 193359370 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 193359370 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 193359370 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 193359370 0x4D01A03: clone (clone.S:100)
+ n1: 3145728 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 3145728 0x111DA5: allocate (allocator.h:198)
+   n1: 3145728 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 3145728 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 3145728 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 3145728 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n1: 2097152 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 2097152 0x10BC15: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:111)
+         n1: 2097152 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2097152 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2097152 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2097152 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2097152 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2097152 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2097152 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2097152 0x4D01A03: clone (clone.S:100)
+       n0: 1048576 in 1 place, below massif's threshold (1.00%)
+ n1: 2134032 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 2134032 0x1136CE: allocate (allocator.h:198)
+   n1: 2134032 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 2134032 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 2134032 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 2134032 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 2134032 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 2134032 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 2134032 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2134032 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2134032 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2134032 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2134032 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2134032 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2134032 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2134032 0x4D01A03: clone (clone.S:100)
+ n0: 79077 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=32
+#-----------
+time=5364239079
+mem_heap_B=200715012
+mem_heap_extra_B=1537428
+mem_stacks_B=0
+heap_tree=detailed
+n4: 200715012 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 195356175 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 195356175 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 195356175 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 195356175 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 195356175 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 195356175 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 195356175 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 195356175 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 195356175 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 195356175 0x4D01A03: clone (clone.S:100)
+ n1: 3145728 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 3145728 0x111DA5: allocate (allocator.h:198)
+   n1: 3145728 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 3145728 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 3145728 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 3145728 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n1: 2097152 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 2097152 0x10BC15: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:111)
+         n1: 2097152 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2097152 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2097152 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2097152 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2097152 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2097152 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2097152 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2097152 0x4D01A03: clone (clone.S:100)
+       n0: 1048576 in 1 place, below massif's threshold (1.00%)
+ n1: 2134032 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 2134032 0x1136CE: allocate (allocator.h:198)
+   n1: 2134032 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 2134032 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 2134032 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 2134032 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 2134032 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 2134032 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 2134032 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2134032 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2134032 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2134032 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2134032 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2134032 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2134032 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2134032 0x4D01A03: clone (clone.S:100)
+ n0: 79077 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=33
+#-----------
+time=5487702294
+mem_heap_B=202205452
+mem_heap_extra_B=1548660
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=5666463598
+mem_heap_B=215220419
+mem_heap_extra_B=1649429
+mem_stacks_B=0
+heap_tree=detailed
+n4: 215220419 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 209746894 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 209746894 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 209746894 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 209746894 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 209746894 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 209746894 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 209746894 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 209746894 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 209746894 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 209746894 0x4D01A03: clone (clone.S:100)
+ n1: 3145728 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 3145728 0x111DA5: allocate (allocator.h:198)
+   n1: 3145728 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 3145728 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 3145728 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 3145728 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 3145728 in 2 places, all below massif's threshold (1.00%)
+ n1: 2248720 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 2248720 0x1136CE: allocate (allocator.h:198)
+   n1: 2248720 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 2248720 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 2248720 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 2248720 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 2248720 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 2248720 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 2248720 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2248720 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2248720 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2248720 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2248720 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2248720 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2248720 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2248720 0x4D01A03: clone (clone.S:100)
+ n0: 79077 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=35
+#-----------
+time=5902682437
+mem_heap_B=223989772
+mem_heap_extra_B=1714700
+mem_stacks_B=0
+heap_tree=detailed
+n4: 223989772 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 218385175 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 218385175 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 218385175 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 218385175 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 218385175 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 218385175 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 218385175 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 218385175 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 218385175 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 218385175 0x4D01A03: clone (clone.S:100)
+ n1: 3145728 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 3145728 0x111DA5: allocate (allocator.h:198)
+   n1: 3145728 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 3145728 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 3145728 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 3145728 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 3145728 in 2 places, all below massif's threshold (1.00%)
+ n1: 2379792 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 2379792 0x1136CE: allocate (allocator.h:198)
+   n1: 2379792 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 2379792 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 2379792 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 2379792 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 2379792 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 2379792 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 2379792 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2379792 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2379792 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2379792 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2379792 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2379792 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2379792 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2379792 0x4D01A03: clone (clone.S:100)
+ n0: 79077 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=36
+#-----------
+time=6077931445
+mem_heap_B=233108481
+mem_heap_extra_B=1785127
+mem_stacks_B=0
+heap_tree=detailed
+n4: 233108481 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 227442444 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 227442444 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 227442444 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 227442444 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 227442444 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 227442444 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 227442444 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 227442444 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 227442444 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 227442444 0x4D01A03: clone (clone.S:100)
+ n1: 3145728 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 3145728 0x111DA5: allocate (allocator.h:198)
+   n1: 3145728 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 3145728 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 3145728 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 3145728 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 3145728 in 2 places, all below massif's threshold (1.00%)
+ n1: 2441232 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 2441232 0x1136CE: allocate (allocator.h:198)
+   n1: 2441232 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 2441232 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 2441232 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 2441232 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 2441232 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 2441232 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 2441232 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2441232 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2441232 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2441232 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2441232 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2441232 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2441232 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2441232 0x4D01A03: clone (clone.S:100)
+ n0: 79077 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=37
+#-----------
+time=6268740712
+mem_heap_B=239744406
+mem_heap_extra_B=1838458
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=6427790828
+mem_heap_B=241964526
+mem_heap_extra_B=1856666
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=6559888025
+mem_heap_B=245031855
+mem_heap_extra_B=1881337
+mem_stacks_B=0
+heap_tree=peak
+n4: 245031855 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 239300282 0x10E1F5: MallocAllocator::allocate(unsigned long) (benchmark.cpp:60)
+  n1: 239300282 0x10BB36: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:103)
+   n1: 239300282 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+    n1: 239300282 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+     n1: 239300282 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+      n1: 239300282 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+       n1: 239300282 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+        n1: 239300282 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+         n1: 239300282 0x4C70AC2: start_thread (pthread_create.c:442)
+          n0: 239300282 0x4D01A03: clone (clone.S:100)
+ n1: 3145728 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 3145728 0x111DA5: allocate (allocator.h:198)
+   n1: 3145728 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 3145728 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 3145728 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n1: 3145728 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n0: 3145728 in 2 places, all below massif's threshold (1.00%)
+ n1: 2506768 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 2506768 0x1136CE: allocate (allocator.h:198)
+   n1: 2506768 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 2506768 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 2506768 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 2506768 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n1: 2506768 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 2506768 0x10BB8C: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:107)
+         n1: 2506768 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2506768 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2506768 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2506768 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2506768 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2506768 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2506768 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2506768 0x4D01A03: clone (clone.S:100)
+ n0: 79077 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=40
+#-----------
+time=6744723158
+mem_heap_B=203628716
+mem_heap_extra_B=1558316
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=6991403869
+mem_heap_B=184439523
+mem_heap_extra_B=1407965
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=7114869919
+mem_heap_B=25508820
+mem_heap_extra_B=172516
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=7845223610
+mem_heap_B=3221717
+mem_heap_extra_B=83
+mem_stacks_B=0
+heap_tree=detailed
+n3: 3221717 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3145728 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 3145728 0x111DA5: allocate (allocator.h:198)
+   n1: 3145728 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 3145728 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 3145728 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 3145728 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n1: 2097152 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 2097152 0x10BC15: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:111)
+         n1: 2097152 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2097152 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2097152 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2097152 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2097152 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2097152 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2097152 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2097152 0x4D01A03: clone (clone.S:100)
+       n1: 1048576 0x10E17A: Statistics::add_free_latency(double) (benchmark.cpp:33)
+        n1: 1048576 0x10BF29: worker_thread_malloc(Statistics&, MallocAllocator&, int, int, int) (benchmark.cpp:133)
+         n1: 1048576 0x117088: void std::__invoke_impl<void, void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1048576 0x116DEE: std::__invoke_result<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int>(void (*&&)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MallocAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1048576 0x116AAC: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1048576 0x116929: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1048576 0x1168E9: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MallocAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MallocAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1048576 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1048576 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1048576 0x4D01A03: clone (clone.S:100)
+ n1: 73728 0x4917371: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+  n1: 73728 0x400647D: call_init.part.0 (dl-init.c:70)
+   n1: 73728 0x4006567: call_init (dl-init.c:33)
+    n1: 73728 0x4006567: _dl_init (dl-init.c:117)
+     n0: 73728 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 2261 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=44
+#-----------
+time=7976468524
+mem_heap_B=103848
+mem_heap_extra_B=2936
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=8108524587
+mem_heap_B=133248
+mem_heap_extra_B=5656
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=8242540488
+mem_heap_B=168328
+mem_heap_extra_B=8264
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=8379224170
+mem_heap_B=206112
+mem_heap_extra_B=10896
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=8511030471
+mem_heap_B=515920
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=detailed
+n6: 515920 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 229376 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 229376 0x111DA5: allocate (allocator.h:198)
+   n1: 229376 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 229376 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 229376 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 229376 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n2: 196608 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 196608 0x10C3C3: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:175)
+         n1: 196608 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 196608 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 196608 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 196608 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 196608 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 196608 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 196608 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 196608 0x4D01A03: clone (clone.S:100)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+       n2: 32768 0x10E17A: Statistics::add_free_latency(double) (benchmark.cpp:33)
+        n1: 32768 0x10C6DE: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:197)
+         n1: 32768 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 32768 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 32768 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 32768 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 32768 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 32768 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 32768 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 32768 0x4D01A03: clone (clone.S:100)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 99328 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 99328 0x1136CE: allocate (allocator.h:198)
+   n1: 99328 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 99328 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 99328 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 99328 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n2: 99328 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 99328 0x10C33A: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:171)
+         n1: 99328 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 99328 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 99328 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 99328 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 99328 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 99328 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 99328 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 99328 0x4D01A03: clone (clone.S:100)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4917371: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+  n1: 73728 0x400647D: call_init.part.0 (dl-init.c:70)
+   n1: 73728 0x4006567: call_init (dl-init.c:33)
+    n1: 73728 0x4006567: _dl_init (dl-init.c:117)
+     n0: 73728 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n1: 65536 0x11C717: std::__new_allocator<std::_Rb_tree_node<std::pair<std::byte* const, memory_pool::page_span> > >::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 65536 0x11C4EF: allocate (allocator.h:198)
+   n1: 65536 0x11C4EF: allocate (alloc_traits.h:482)
+    n1: 65536 0x11C4EF: std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_M_get_node() (stl_tree.h:563)
+     n1: 65536 0x11C10E: std::_Rb_tree_node<std::pair<std::byte* const, memory_pool::page_span> >* std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_M_create_node<std::byte*&, memory_pool::page_span>(std::byte*&, memory_pool::page_span&&) (stl_tree.h:613)
+      n1: 65536 0x11B7F1: std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_Auto_node::_Auto_node<std::byte*&, memory_pool::page_span>(std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >&, std::byte*&, memory_pool::page_span&&) (stl_tree.h:1637)
+       n1: 65536 0x11B6B0: std::_Rb_tree_iterator<std::pair<std::byte* const, memory_pool::page_span> > std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_M_emplace_hint_unique<std::byte*&, memory_pool::page_span>(std::_Rb_tree_const_iterator<std::pair<std::byte* const, memory_pool::page_span> >, std::byte*&, memory_pool::page_span&&) (stl_tree.h:2462)
+        n1: 65536 0x11B376: std::_Rb_tree_iterator<std::pair<std::byte* const, memory_pool::page_span> > std::map<std::byte*, memory_pool::page_span, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::emplace_hint<std::byte*&, memory_pool::page_span>(std::_Rb_tree_const_iterator<std::pair<std::byte* const, memory_pool::page_span> >, std::byte*&, memory_pool::page_span&&) (stl_map.h:640)
+         n1: 65536 0x11AF3B: std::pair<std::_Rb_tree_iterator<std::pair<std::byte* const, memory_pool::page_span> >, bool> std::map<std::byte*, memory_pool::page_span, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::emplace<std::byte*&, memory_pool::page_span>(std::byte*&, memory_pool::page_span&&) (stl_map.h:601)
+          n1: 65536 0x11965E: memory_pool::central_cache::allocate(unsigned long, unsigned long) (central_cache.cpp:80)
+           n1: 65536 0x117BDE: memory_pool::thread_cache::allocate_from_central_cache(unsigned long) (thread_cache.cpp:96)
+            n1: 65536 0x11766C: memory_pool::thread_cache::allocate(unsigned long) (thread_cache.cpp:34)
+             n1: 65536 0x10E038: memory_pool::memory_pool::allocate(unsigned long) (memory_pool.h:17)
+              n1: 65536 0x10E23B: MemoryPoolAllocator::allocate(unsigned long) (benchmark.cpp:72)
+               n1: 65536 0x10C2C9: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:167)
+                n1: 65536 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+                 n1: 65536 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+                  n1: 65536 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+                   n1: 65536 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+                    n1: 65536 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+                     n1: 65536 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+                      n1: 65536 0x4C70AC2: start_thread (pthread_create.c:442)
+                       n0: 65536 0x4D01A03: clone (clone.S:100)
+ n1: 35640 0x123C59: std::__new_allocator<std::_Rb_tree_node<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 35640 0x122E2E: allocate (allocator.h:198)
+   n1: 35640 0x122E2E: allocate (alloc_traits.h:482)
+    n2: 35640 0x122E2E: std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::_M_get_node() (stl_tree.h:563)
+     n1: 29920 0x121AB0: std::_Rb_tree_node<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >* std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<unsigned long&&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<unsigned long&&>&&, std::tuple<>&&) (stl_tree.h:613)
+      n1: 29920 0x1200B6: std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::_Auto_node::_Auto_node<std::piecewise_construct_t const&, std::tuple<unsigned long&&>, std::tuple<> >(std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >&, std::piecewise_construct_t const&, std::tuple<unsigned long&&>&&, std::tuple<>&&) (stl_tree.h:1637)
+       n1: 29920 0x11EACE: std::_Rb_tree_iterator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<unsigned long&&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::piecewise_construct_t const&, std::tuple<unsigned long&&>&&, std::tuple<>&&) (stl_tree.h:2462)
+        n1: 29920 0x11DC84: std::map<unsigned long, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::operator[](unsigned long&&) (stl_map.h:532)
+         n1: 29920 0x11CB1C: memory_pool::page_cache::allocate_page(unsigned long) (page_cache.cpp:34)
+          n1: 29920 0x11A2FF: memory_pool::central_cache::get_page_from_page_cache(unsigned long) (central_cache.cpp:230)
+           n1: 29920 0x11945A: memory_pool::central_cache::allocate(unsigned long, unsigned long) (central_cache.cpp:47)
+            n1: 29920 0x117BDE: memory_pool::thread_cache::allocate_from_central_cache(unsigned long) (thread_cache.cpp:96)
+             n1: 29920 0x11766C: memory_pool::thread_cache::allocate(unsigned long) (thread_cache.cpp:34)
+              n1: 29920 0x10E038: memory_pool::memory_pool::allocate(unsigned long) (memory_pool.h:17)
+               n1: 29920 0x10E23B: MemoryPoolAllocator::allocate(unsigned long) (benchmark.cpp:72)
+                n1: 29920 0x10C2C9: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:167)
+                 n1: 29920 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+                  n1: 29920 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+                   n1: 29920 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+                    n1: 29920 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+                     n1: 29920 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+                      n1: 29920 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+                       n1: 29920 0x4C70AC2: start_thread (pthread_create.c:442)
+                        n0: 29920 0x4D01A03: clone (clone.S:100)
+     n1: 5720 0x12289E: std::_Rb_tree_node<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >* std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<unsigned long const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<unsigned long const&>&&, std::tuple<>&&) (stl_tree.h:613)
+      n1: 5720 0x121006: std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::_Auto_node::_Auto_node<std::piecewise_construct_t const&, std::tuple<unsigned long const&>, std::tuple<> >(std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >&, std::piecewise_construct_t const&, std::tuple<unsigned long const&>&&, std::tuple<>&&) (stl_tree.h:1637)
+       n1: 5720 0x11F376: std::_Rb_tree_iterator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<unsigned long const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::piecewise_construct_t const&, std::tuple<unsigned long const&>&&, std::tuple<>&&) (stl_tree.h:2462)
+        n1: 5720 0x11E14D: std::map<unsigned long, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::operator[](unsigned long const&) (stl_map.h:513)
+         n1: 5720 0x11C89A: memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}::operator()(memory_pool::memory_span) const (page_cache.cpp:53)
+          n1: 5720 0x11D6A3: memory_pool::memory_span std::__invoke_impl<memory_pool::memory_span, memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}, memory_pool::memory_span>(std::__invoke_other, memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}&&, memory_pool::memory_span&&) (invoke.h:61)
+           n1: 5720 0x11D65C: std::__invoke_result<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}, memory_pool::memory_span>::type std::__invoke<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}, memory_pool::memory_span>(memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}&&, memory_pool::memory_span&&) (invoke.h:96)
+            n1: 5720 0x11D606: std::_Optional_payload_base<memory_pool::memory_span>::_Storage<memory_pool::memory_span, true>::_Storage<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}, memory_pool::memory_span>(std::_Optional_func<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}>, memory_pool::memory_span&&) (optional:227)
+             n1: 5720 0x11D582: decltype (::new ((void*)(0)) std::_Optional_payload_base<memory_pool::memory_span>::_Storage<memory_pool::memory_span, true>((declval<std::_Optional_func<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}>&>)(), (declval<memory_pool::memory_span>)())) std::construct_at<std::_Optional_payload_base<memory_pool::memory_span>::_Storage<memory_pool::memory_span, true>, std::_Optional_func<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}>&, memory_pool::memory_span>(std::_Optional_payload_base<memory_pool::memory_span>::_Storage<memory_pool::memory_span, true>*, std::_Optional_func<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}>&, memory_pool::memory_span&&) (stl_construct.h:97)
+              n1: 5720 0x11D512: void std::_Optional_payload_base<memory_pool::memory_span>::_M_apply<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}, memory_pool::memory_span>(std::_Optional_func<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}>, memory_pool::memory_span&&) (optional:295)
+               n1: 5720 0x11D4C6: std::optional<memory_pool::memory_span>::optional<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}, memory_pool::memory_span>(std::_Optional_func<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}>, memory_pool::memory_span&&) (optional:1180)
+                n1: 5720 0x11C94B: auto std::optional<memory_pool::memory_span>::transform<memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}>(memory_pool::page_cache::allocate_page(unsigned long)::{lambda(memory_pool::memory_span)#1}&&) && (optional:1127)
+                 n1: 5720 0x11CC1E: memory_pool::page_cache::allocate_page(unsigned long) (page_cache.cpp:45)
+                  n1: 5720 0x11A2FF: memory_pool::central_cache::get_page_from_page_cache(unsigned long) (central_cache.cpp:230)
+                   n1: 5720 0x11945A: memory_pool::central_cache::allocate(unsigned long, unsigned long) (central_cache.cpp:47)
+                    n1: 5720 0x117BDE: memory_pool::thread_cache::allocate_from_central_cache(unsigned long) (thread_cache.cpp:96)
+                     n1: 5720 0x11766C: memory_pool::thread_cache::allocate(unsigned long) (thread_cache.cpp:34)
+                      n1: 5720 0x10E038: memory_pool::memory_pool::allocate(unsigned long) (memory_pool.h:17)
+                       n1: 5720 0x10E23B: MemoryPoolAllocator::allocate(unsigned long) (benchmark.cpp:72)
+                        n1: 5720 0x10C2C9: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:167)
+                         n1: 5720 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+                          n1: 5720 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+                           n1: 5720 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+                            n1: 5720 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+                             n1: 5720 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+                              n1: 5720 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+                               n1: 5720 0x4C70AC2: start_thread (pthread_create.c:442)
+                                n0: 5720 0x4D01A03: clone (clone.S:100)
+ n0: 12312 in 10 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=49
+#-----------
+time=8656276402
+mem_heap_B=843600
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=8836804890
+mem_heap_B=941904
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=8936247969
+mem_heap_B=1038160
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=9034575787
+mem_heap_B=1541968
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=9285274800
+mem_heap_B=1925968
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=9396731075
+mem_heap_B=1885008
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=9627086239
+mem_heap_B=2704208
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=9828433996
+mem_heap_B=3097424
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=10282239977
+mem_heap_B=3359568
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=11083559394
+mem_heap_B=3101520
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3101520 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1572864 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1572864 0x111DA5: allocate (allocator.h:198)
+   n1: 1572864 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 1572864 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1572864 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 1572864 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n2: 1048576 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 1048576 0x10C3C3: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:175)
+         n1: 1048576 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1048576 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1048576 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1048576 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1048576 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1048576 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1048576 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1048576 0x4D01A03: clone (clone.S:100)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+       n2: 524288 0x10E17A: Statistics::add_free_latency(double) (benchmark.cpp:33)
+        n1: 524288 0x10C6DE: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:197)
+         n1: 524288 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 524288 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 524288 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 524288 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 524288 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 524288 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 524288 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 524288 0x4D01A03: clone (clone.S:100)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 1341440 0x1157CF: std::__new_allocator<AllocatedBlock>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 1341440 0x1136CE: allocate (allocator.h:198)
+   n1: 1341440 0x1136CE: allocate (alloc_traits.h:482)
+    n1: 1341440 0x1136CE: std::_Vector_base<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 1341440 0x1123BA: void std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::_M_realloc_insert<AllocatedBlock>(__gnu_cxx::__normal_iterator<AllocatedBlock*, std::vector<AllocatedBlock, std::allocator<AllocatedBlock> > >, AllocatedBlock&&) (vector.tcc:459)
+      n1: 1341440 0x1108EE: AllocatedBlock& std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::emplace_back<AllocatedBlock>(AllocatedBlock&&) (vector.tcc:123)
+       n2: 1341440 0x10EF61: std::vector<AllocatedBlock, std::allocator<AllocatedBlock> >::push_back(AllocatedBlock&&) (stl_vector.h:1296)
+        n1: 1341440 0x10C33A: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:171)
+         n1: 1341440 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1341440 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1341440 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1341440 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1341440 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1341440 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1341440 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1341440 0x4D01A03: clone (clone.S:100)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4917371: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+  n1: 73728 0x400647D: call_init.part.0 (dl-init.c:70)
+   n1: 73728 0x4006567: call_init (dl-init.c:33)
+    n1: 73728 0x4006567: _dl_init (dl-init.c:117)
+     n0: 73728 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n1: 65536 0x11C717: std::__new_allocator<std::_Rb_tree_node<std::pair<std::byte* const, memory_pool::page_span> > >::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 65536 0x11C4EF: allocate (allocator.h:198)
+   n1: 65536 0x11C4EF: allocate (alloc_traits.h:482)
+    n1: 65536 0x11C4EF: std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_M_get_node() (stl_tree.h:563)
+     n1: 65536 0x11C10E: std::_Rb_tree_node<std::pair<std::byte* const, memory_pool::page_span> >* std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_M_create_node<std::byte*&, memory_pool::page_span>(std::byte*&, memory_pool::page_span&&) (stl_tree.h:613)
+      n1: 65536 0x11B7F1: std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_Auto_node::_Auto_node<std::byte*&, memory_pool::page_span>(std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >&, std::byte*&, memory_pool::page_span&&) (stl_tree.h:1637)
+       n1: 65536 0x11B6B0: std::_Rb_tree_iterator<std::pair<std::byte* const, memory_pool::page_span> > std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_M_emplace_hint_unique<std::byte*&, memory_pool::page_span>(std::_Rb_tree_const_iterator<std::pair<std::byte* const, memory_pool::page_span> >, std::byte*&, memory_pool::page_span&&) (stl_tree.h:2462)
+        n1: 65536 0x11B376: std::_Rb_tree_iterator<std::pair<std::byte* const, memory_pool::page_span> > std::map<std::byte*, memory_pool::page_span, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::emplace_hint<std::byte*&, memory_pool::page_span>(std::_Rb_tree_const_iterator<std::pair<std::byte* const, memory_pool::page_span> >, std::byte*&, memory_pool::page_span&&) (stl_map.h:640)
+         n1: 65536 0x11AF3B: std::pair<std::_Rb_tree_iterator<std::pair<std::byte* const, memory_pool::page_span> >, bool> std::map<std::byte*, memory_pool::page_span, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::emplace<std::byte*&, memory_pool::page_span>(std::byte*&, memory_pool::page_span&&) (stl_map.h:601)
+          n1: 65536 0x11965E: memory_pool::central_cache::allocate(unsigned long, unsigned long) (central_cache.cpp:80)
+           n1: 65536 0x117BDE: memory_pool::thread_cache::allocate_from_central_cache(unsigned long) (thread_cache.cpp:96)
+            n1: 65536 0x11766C: memory_pool::thread_cache::allocate(unsigned long) (thread_cache.cpp:34)
+             n1: 65536 0x10E038: memory_pool::memory_pool::allocate(unsigned long) (memory_pool.h:17)
+              n1: 65536 0x10E23B: MemoryPoolAllocator::allocate(unsigned long) (benchmark.cpp:72)
+               n1: 65536 0x10C2C9: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:167)
+                n1: 65536 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+                 n1: 65536 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+                  n1: 65536 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+                   n1: 65536 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+                    n1: 65536 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+                     n1: 65536 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+                      n1: 65536 0x4C70AC2: start_thread (pthread_create.c:442)
+                       n0: 65536 0x4D01A03: clone (clone.S:100)
+ n1: 35640 0x123C59: std::__new_allocator<std::_Rb_tree_node<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 35640 0x122E2E: allocate (allocator.h:198)
+   n1: 35640 0x122E2E: allocate (alloc_traits.h:482)
+    n1: 35640 0x122E2E: std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::_M_get_node() (stl_tree.h:563)
+     n0: 35640 in 2 places, all below massif's threshold (1.00%)
+ n0: 12312 in 10 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=59
+#-----------
+time=11198081479
+mem_heap_B=3353424
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=11463520449
+mem_heap_B=3517264
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=11613295857
+mem_heap_B=5548880
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=11721623463
+mem_heap_B=4827984
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=12055791660
+mem_heap_B=4762448
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=12216664697
+mem_heap_B=5843792
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=12526222233
+mem_heap_B=5458768
+mem_heap_extra_B=12448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=12657642262
+mem_heap_B=5053264
+mem_heap_extra_B=12432
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=12804120528
+mem_heap_B=5315360
+mem_heap_extra_B=12432
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=13491897183
+mem_heap_B=3329808
+mem_heap_extra_B=12128
+mem_stacks_B=0
+heap_tree=detailed
+n5: 3329808 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3145728 0x114B0F: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 3145728 0x111DA5: allocate (allocator.h:198)
+   n1: 3145728 0x111DA5: allocate (alloc_traits.h:482)
+    n1: 3145728 0x111DA5: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:378)
+     n1: 3145728 0x11015E: void std::vector<double, std::allocator<double> >::_M_realloc_insert<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) (vector.tcc:459)
+      n2: 3145728 0x10E9F3: std::vector<double, std::allocator<double> >::push_back(double const&) (stl_vector.h:1289)
+       n2: 2097152 0x10E0CC: Statistics::add_alloc_latency(double) (benchmark.cpp:28)
+        n1: 2097152 0x10C3C3: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:175)
+         n1: 2097152 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 2097152 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 2097152 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 2097152 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 2097152 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 2097152 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 2097152 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 2097152 0x4D01A03: clone (clone.S:100)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+       n2: 1048576 0x10E17A: Statistics::add_free_latency(double) (benchmark.cpp:33)
+        n1: 1048576 0x10C6DE: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:197)
+         n1: 1048576 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+          n1: 1048576 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+           n1: 1048576 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+            n1: 1048576 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+             n1: 1048576 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+              n1: 1048576 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+               n1: 1048576 0x4C70AC2: start_thread (pthread_create.c:442)
+                n0: 1048576 0x4D01A03: clone (clone.S:100)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4917371: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+  n1: 73728 0x400647D: call_init.part.0 (dl-init.c:70)
+   n1: 73728 0x4006567: call_init (dl-init.c:33)
+    n1: 73728 0x4006567: _dl_init (dl-init.c:117)
+     n0: 73728 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n1: 65536 0x11C717: std::__new_allocator<std::_Rb_tree_node<std::pair<std::byte* const, memory_pool::page_span> > >::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 65536 0x11C4EF: allocate (allocator.h:198)
+   n1: 65536 0x11C4EF: allocate (alloc_traits.h:482)
+    n1: 65536 0x11C4EF: std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_M_get_node() (stl_tree.h:563)
+     n1: 65536 0x11C10E: std::_Rb_tree_node<std::pair<std::byte* const, memory_pool::page_span> >* std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_M_create_node<std::byte*&, memory_pool::page_span>(std::byte*&, memory_pool::page_span&&) (stl_tree.h:613)
+      n1: 65536 0x11B7F1: std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_Auto_node::_Auto_node<std::byte*&, memory_pool::page_span>(std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >&, std::byte*&, memory_pool::page_span&&) (stl_tree.h:1637)
+       n1: 65536 0x11B6B0: std::_Rb_tree_iterator<std::pair<std::byte* const, memory_pool::page_span> > std::_Rb_tree<std::byte*, std::pair<std::byte* const, memory_pool::page_span>, std::_Select1st<std::pair<std::byte* const, memory_pool::page_span> >, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::_M_emplace_hint_unique<std::byte*&, memory_pool::page_span>(std::_Rb_tree_const_iterator<std::pair<std::byte* const, memory_pool::page_span> >, std::byte*&, memory_pool::page_span&&) (stl_tree.h:2462)
+        n1: 65536 0x11B376: std::_Rb_tree_iterator<std::pair<std::byte* const, memory_pool::page_span> > std::map<std::byte*, memory_pool::page_span, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::emplace_hint<std::byte*&, memory_pool::page_span>(std::_Rb_tree_const_iterator<std::pair<std::byte* const, memory_pool::page_span> >, std::byte*&, memory_pool::page_span&&) (stl_map.h:640)
+         n1: 65536 0x11AF3B: std::pair<std::_Rb_tree_iterator<std::pair<std::byte* const, memory_pool::page_span> >, bool> std::map<std::byte*, memory_pool::page_span, std::less<std::byte*>, std::allocator<std::pair<std::byte* const, memory_pool::page_span> > >::emplace<std::byte*&, memory_pool::page_span>(std::byte*&, memory_pool::page_span&&) (stl_map.h:601)
+          n1: 65536 0x11965E: memory_pool::central_cache::allocate(unsigned long, unsigned long) (central_cache.cpp:80)
+           n1: 65536 0x117BDE: memory_pool::thread_cache::allocate_from_central_cache(unsigned long) (thread_cache.cpp:96)
+            n1: 65536 0x11766C: memory_pool::thread_cache::allocate(unsigned long) (thread_cache.cpp:34)
+             n1: 65536 0x10E038: memory_pool::memory_pool::allocate(unsigned long) (memory_pool.h:17)
+              n1: 65536 0x10E23B: MemoryPoolAllocator::allocate(unsigned long) (benchmark.cpp:72)
+               n1: 65536 0x10C2C9: worker_thread_mempool(Statistics&, MemoryPoolAllocator&, int, int, int) (benchmark.cpp:167)
+                n1: 65536 0x116F68: void std::__invoke_impl<void, void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(std::__invoke_other, void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:61)
+                 n1: 65536 0x116C4D: std::__invoke_result<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>::type std::__invoke<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int>(void (*&&)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>&&, std::reference_wrapper<MemoryPoolAllocator>&&, int&&, int&&, int&&) (invoke.h:96)
+                  n1: 65536 0x1169E4: void std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::_M_invoke<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>(std::_Index_tuple<0ul, 1ul, 2ul, 3ul, 4ul, 5ul>) (std_thread.h:292)
+                   n1: 65536 0x116909: std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> >::operator()() (std_thread.h:299)
+                    n1: 65536 0x1168C5: std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (*)(Statistics&, MemoryPoolAllocator&, int, int, int), std::reference_wrapper<Statistics>, std::reference_wrapper<MemoryPoolAllocator>, int, int, int> > >::_M_run() (std_thread.h:244)
+                     n1: 65536 0x494A2B2: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32)
+                      n1: 65536 0x4C70AC2: start_thread (pthread_create.c:442)
+                       n0: 65536 0x4D01A03: clone (clone.S:100)
+ n1: 35640 0x123C59: std::__new_allocator<std::_Rb_tree_node<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::allocate(unsigned long, void const*) (new_allocator.h:147)
+  n1: 35640 0x122E2E: allocate (allocator.h:198)
+   n1: 35640 0x122E2E: allocate (alloc_traits.h:482)
+    n1: 35640 0x122E2E: std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > >, std::_Select1st<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::set<memory_pool::memory_span, std::less<memory_pool::memory_span>, std::allocator<memory_pool::memory_span> > > > >::_M_get_node() (stl_tree.h:563)
+     n0: 35640 in 2 places, all below massif's threshold (1.00%)
+ n0: 9176 in 11 places, all below massif's threshold (1.00%)

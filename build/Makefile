@@ -130,6 +130,32 @@ memory_pool_demo/fast:
 .PHONY : memory_pool_demo/fast
 
 #=============================================================================
+# Target rules for targets named memory_pool_benchmark
+
+# Build rule for target.
+memory_pool_benchmark: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 memory_pool_benchmark
+.PHONY : memory_pool_benchmark
+
+# fast build rule for target.
+memory_pool_benchmark/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory_pool_benchmark.dir/build.make CMakeFiles/memory_pool_benchmark.dir/build
+.PHONY : memory_pool_benchmark/fast
+
+#=============================================================================
+# Target rules for targets named memory_pool_performance
+
+# Build rule for target.
+memory_pool_performance: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 memory_pool_performance
+.PHONY : memory_pool_performance
+
+# fast build rule for target.
+memory_pool_performance/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory_pool_performance.dir/build.make CMakeFiles/memory_pool_performance.dir/build
+.PHONY : memory_pool_performance/fast
+
+#=============================================================================
 # Target rules for targets named memory_pool_lib
 
 # Build rule for target.
@@ -141,6 +167,30 @@ memory_pool_lib: cmake_check_build_system
 memory_pool_lib/fast:
 	$(MAKE) $(MAKESILENT) -f memory_pool/CMakeFiles/memory_pool_lib.dir/build.make memory_pool/CMakeFiles/memory_pool_lib.dir/build
 .PHONY : memory_pool_lib/fast
+
+benchmark.o: benchmark.cpp.o
+.PHONY : benchmark.o
+
+# target to build an object file
+benchmark.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory_pool_benchmark.dir/build.make CMakeFiles/memory_pool_benchmark.dir/benchmark.cpp.o
+.PHONY : benchmark.cpp.o
+
+benchmark.i: benchmark.cpp.i
+.PHONY : benchmark.i
+
+# target to preprocess a source file
+benchmark.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory_pool_benchmark.dir/build.make CMakeFiles/memory_pool_benchmark.dir/benchmark.cpp.i
+.PHONY : benchmark.cpp.i
+
+benchmark.s: benchmark.cpp.s
+.PHONY : benchmark.s
+
+# target to generate assembly for a file
+benchmark.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory_pool_benchmark.dir/build.make CMakeFiles/memory_pool_benchmark.dir/benchmark.cpp.s
+.PHONY : benchmark.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -166,6 +216,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory_pool_demo.dir/build.make CMakeFiles/memory_pool_demo.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+performance.o: performance.cpp.o
+.PHONY : performance.o
+
+# target to build an object file
+performance.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory_pool_performance.dir/build.make CMakeFiles/memory_pool_performance.dir/performance.cpp.o
+.PHONY : performance.cpp.o
+
+performance.i: performance.cpp.i
+.PHONY : performance.i
+
+# target to preprocess a source file
+performance.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory_pool_performance.dir/build.make CMakeFiles/memory_pool_performance.dir/performance.cpp.i
+.PHONY : performance.cpp.i
+
+performance.s: performance.cpp.s
+.PHONY : performance.s
+
+# target to generate assembly for a file
+performance.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory_pool_performance.dir/build.make CMakeFiles/memory_pool_performance.dir/performance.cpp.s
+.PHONY : performance.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -174,11 +248,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... memory_pool_benchmark"
 	@echo "... memory_pool_demo"
 	@echo "... memory_pool_lib"
+	@echo "... memory_pool_performance"
+	@echo "... benchmark.o"
+	@echo "... benchmark.i"
+	@echo "... benchmark.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... performance.o"
+	@echo "... performance.i"
+	@echo "... performance.s"
 .PHONY : help
 
 

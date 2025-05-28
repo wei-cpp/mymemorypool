@@ -1,0 +1,8 @@
+/home/wei/cpp/mymemorypool/build_debug/CMakeFiles/memory_pool_demo.dir
+/home/wei/cpp/mymemorypool/build_debug/CMakeFiles/memory_pool_benchmark.dir
+/home/wei/cpp/mymemorypool/build_debug/CMakeFiles/memory_pool_performance.dir
+/home/wei/cpp/mymemorypool/build_debug/CMakeFiles/edit_cache.dir
+/home/wei/cpp/mymemorypool/build_debug/CMakeFiles/rebuild_cache.dir
+/home/wei/cpp/mymemorypool/build_debug/memory_pool/CMakeFiles/memory_pool_lib.dir
+/home/wei/cpp/mymemorypool/build_debug/memory_pool/CMakeFiles/edit_cache.dir
+/home/wei/cpp/mymemorypool/build_debug/memory_pool/CMakeFiles/rebuild_cache.dir
