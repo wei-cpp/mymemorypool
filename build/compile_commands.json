@@ -1,0 +1,50 @@
+[
+{
+  "directory": "/home/wei/cpp/mymemorypool/build",
+  "command": "/usr/bin/g++-13  -I/home/wei/cpp/mymemorypool/memory_pool -g -std=c++23 -std=c++2b -o CMakeFiles/memory_pool_demo.dir/main.cpp.o -c /home/wei/cpp/mymemorypool/main.cpp",
+  "file": "/home/wei/cpp/mymemorypool/main.cpp",
+  "output": "CMakeFiles/memory_pool_demo.dir/main.cpp.o"
+},
+{
+  "directory": "/home/wei/cpp/mymemorypool/build",
+  "command": "/usr/bin/g++-13  -I/home/wei/cpp/mymemorypool/memory_pool -g -std=c++23 -std=c++2b -o CMakeFiles/memory_pool_benchmark.dir/benchmark.cpp.o -c /home/wei/cpp/mymemorypool/benchmark.cpp",
+  "file": "/home/wei/cpp/mymemorypool/benchmark.cpp",
+  "output": "CMakeFiles/memory_pool_benchmark.dir/benchmark.cpp.o"
+},
+{
+  "directory": "/home/wei/cpp/mymemorypool/build",
+  "command": "/usr/bin/g++-13  -I/home/wei/cpp/mymemorypool/memory_pool -g -std=c++23 -std=c++2b -o CMakeFiles/memory_pool_performance.dir/performance.cpp.o -c /home/wei/cpp/mymemorypool/performance.cpp",
+  "file": "/home/wei/cpp/mymemorypool/performance.cpp",
+  "output": "CMakeFiles/memory_pool_performance.dir/performance.cpp.o"
+},
+{
+  "directory": "/home/wei/cpp/mymemorypool/build/memory_pool",
+  "command": "/usr/bin/g++-13  -I/home/wei/cpp/mymemorypool/memory_pool -g -std=c++23 -std=c++2b -g -O0 -o CMakeFiles/memory_pool_lib.dir/memory_pool.cpp.o -c /home/wei/cpp/mymemorypool/memory_pool/memory_pool.cpp",
+  "file": "/home/wei/cpp/mymemorypool/memory_pool/memory_pool.cpp",
+  "output": "memory_pool/CMakeFiles/memory_pool_lib.dir/memory_pool.cpp.o"
+},
+{
+  "directory": "/home/wei/cpp/mymemorypool/build/memory_pool",
+  "command": "/usr/bin/g++-13  -I/home/wei/cpp/mymemorypool/memory_pool -g -std=c++23 -std=c++2b -g -O0 -o CMakeFiles/memory_pool_lib.dir/utils.cpp.o -c /home/wei/cpp/mymemorypool/memory_pool/utils.cpp",
+  "file": "/home/wei/cpp/mymemorypool/memory_pool/utils.cpp",
+  "output": "memory_pool/CMakeFiles/memory_pool_lib.dir/utils.cpp.o"
+},
+{
+  "directory": "/home/wei/cpp/mymemorypool/build/memory_pool",
+  "command": "/usr/bin/g++-13  -I/home/wei/cpp/mymemorypool/memory_pool -g -std=c++23 -std=c++2b -g -O0 -o CMakeFiles/memory_pool_lib.dir/page_cache.cpp.o -c /home/wei/cpp/mymemorypool/memory_pool/page_cache.cpp",
+  "file": "/home/wei/cpp/mymemorypool/memory_pool/page_cache.cpp",
+  "output": "memory_pool/CMakeFiles/memory_pool_lib.dir/page_cache.cpp.o"
+},
+{
+  "directory": "/home/wei/cpp/mymemorypool/build/memory_pool",
+  "command": "/usr/bin/g++-13  -I/home/wei/cpp/mymemorypool/memory_pool -g -std=c++23 -std=c++2b -g -O0 -o CMakeFiles/memory_pool_lib.dir/central_cache.cpp.o -c /home/wei/cpp/mymemorypool/memory_pool/central_cache.cpp",
+  "file": "/home/wei/cpp/mymemorypool/memory_pool/central_cache.cpp",
+  "output": "memory_pool/CMakeFiles/memory_pool_lib.dir/central_cache.cpp.o"
+},
+{
+  "directory": "/home/wei/cpp/mymemorypool/build/memory_pool",
+  "command": "/usr/bin/g++-13  -I/home/wei/cpp/mymemorypool/memory_pool -g -std=c++23 -std=c++2b -g -O0 -o CMakeFiles/memory_pool_lib.dir/thread_cache.cpp.o -c /home/wei/cpp/mymemorypool/memory_pool/thread_cache.cpp",
+  "file": "/home/wei/cpp/mymemorypool/memory_pool/thread_cache.cpp",
+  "output": "memory_pool/CMakeFiles/memory_pool_lib.dir/thread_cache.cpp.o"
+}
+]

@@ -43,6 +43,7 @@ namespace memory_pool
         // 将分配出去的内存块记录下来
         void record_allocated_memory_span(std::byte *memory, const size_t memory_size);
 
+        // 从页缓存中获取页面
         std::optional<memory_span> get_page_from_page_cache(size_t page_allocate_count);
 
         // 空闲链表

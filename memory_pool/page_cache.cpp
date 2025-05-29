@@ -40,7 +40,7 @@ namespace memory_pool {
             ++ it;
         }
         // 如果已经没有足够大的页面了，则向系统申请
-        // 一次性分配8MB的大小，为2048个页面，而批量申请的全都取最大是4mb，-> 16KB(缓存最大大小) * 512(一次性管理最大个数) = 4MB
+        // 一次性最少申请8MB的大小，为2048个页面
         size_t page_to_allocate = std::max(PAGE_ALLOCATE_COUNT, page_count);
         return system_allocate_memory(page_to_allocate).transform([this, page_count](memory_span memory) {
             // 存入总的内存，用于结尾回收内存
@@ -62,8 +62,10 @@ namespace memory_pool {
         // 应该是一页一页的回收的，所以大小一定是会被整除的
         assert(page.size() % size_utils::PAGE_SIZE == 0);
         std::unique_lock<std::mutex> guard(m_mutex);
+
+        // 检查前面相邻的span
+        // 只有在集合不空的时候才会考虑合并
         while (!free_page_map.empty()) {
-            // 只有在集合不空的时候才会考虑合并
             // 这个空间不应该已经被包含了
             assert(!free_page_map.contains(page.data()));
             auto it = free_page_map.upper_bound(page.data());
@@ -91,6 +93,7 @@ namespace memory_pool {
             if (free_page_map.contains(page.data() + page.size())) {
                 auto it = free_page_map.find(page.data() + page.size());
                 memory_span next_memory = it->second;
+                //储存库中删除
                 free_page_store[next_memory.size() / size_utils::PAGE_SIZE].erase(next_memory);
                 free_page_map.erase(it);
                 page = memory_span(page.data(), page.size() + next_memory.size());

@@ -83,7 +83,7 @@ namespace memory_pool
         }
     };
 
-    // 这个 page_span 类用于管理从page_cache中分配下来的内存
+    // page_span 类用于管理从page_cache中分配下来的内存,以页为单位
     // 这个实现方式可以用于判断指定的内存块是不是被多次分配或多次释放了，因为这个的实现内部使用到了bitset作为判断
     // 也正是因为这个bitset，会导致central_cache一次最高只能分配不超过bitset容量的内存块
     // 所以可以在debug的时候使用这种实现方法，确保内存不会被多次释放，而在release模式下使用下面那种方式
@@ -151,7 +151,7 @@ namespace memory_pool
     {
     public:
         // 初始化这个page_span
-        // 参数：span:这个page_span管理的空间，unit_size
+        // span空间，unit_size单位大小
         page_span(const memory_span span, const size_t unit_size) : m_memory(span), m_unit_size(unit_size) {};
 
         // 根据内存地址的起始位置进行相比
