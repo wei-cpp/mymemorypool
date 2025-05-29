@@ -22,25 +22,41 @@ const size_t MAX_ALLOC_SIZE = 4 * 1024;           // 最大分配内存块大小
 const int ALLOC_PERCENTAGE = 60;                  // 分配操作所占的百分比
 const unsigned int RANDOM_SEED = 54321;           // 固定的随机种子，确保每次运行结果可复现
 const size_t DEFAULT_ALIGNMENT = alignof(std::max_align_t);
+const unsigned int NUM_RUNS = 5;  // 运行次数
+const bool CLEAR_CACHE_BETWEEN_RUNS = true;  // 是否在每次运行之间清理缓存
 
 // --- 统计数据结构 ---
+struct ThreadSafeStats {
+    std::atomic<size_t> total_allocs{0};
+    std::atomic<size_t> successful_allocs{0};
+    std::atomic<size_t> failed_allocs{0};
+    std::atomic<size_t> total_deallocs{0};
+    std::atomic<long long> total_alloc_latency_ns{0};
+    std::atomic<long long> total_dealloc_latency_ns{0};
+    std::atomic<size_t> peak_memory_usage{0};
+
+    std::vector<long long> alloc_latencies;
+    std::vector<long long> dealloc_latencies;
+    mutable std::mutex latency_mutex;  // 修改为mutable以允许在const对象上调用
+};
+
 struct Stats {
-    std::atomic<size_t> total_allocs{0};         // 总尝试分配次数
-    std::atomic<size_t> successful_allocs{0};    // 成功分配次数
-    std::atomic<size_t> failed_allocs{0};        // 失败分配次数
-    std::atomic<size_t> total_deallocs{0};       // 总尝试释放次数 (在基准测试计时内)
-    std::atomic<long long> total_alloc_latency_ns{0}; // 总分配延迟 (纳秒)
-    std::atomic<long long> total_dealloc_latency_ns{0};// 总释放延迟 (纳秒)
-    std::atomic<size_t> peak_memory_usage{0};    // 峰值内存使用量 (各线程峰值之和，近似值)
+    // 普通数据成员，可以拷贝
+    size_t total_allocs{0};
+    size_t successful_allocs{0};
+    size_t failed_allocs{0};
+    size_t total_deallocs{0};
+    long long total_alloc_latency_ns{0};
+    long long total_dealloc_latency_ns{0};
+    size_t peak_memory_usage{0};
 
-    std::vector<long long> alloc_latencies;       // 存储所有单次分配延迟
-    std::vector<long long> dealloc_latencies;     // 存储所有单次释放延迟
-    std::mutex latency_mutex;                     // 保护延迟向量在合并时线程安全
+    std::vector<long long> alloc_latencies;
+    std::vector<long long> dealloc_latencies;
 
-    long long total_duration_ms = 0;              // 基准测试总运行时间 (毫秒)
-    double ops_per_sec = 0.0;                     // 每秒操作数
-    double p99_alloc_latency_ns = 0.0;           // P99 分配延迟 (纳秒)
-    double p99_dealloc_latency_ns = 0.0;         // P99 释放延迟 (纳秒)
+    long long total_duration_ms = 0;
+    double ops_per_sec = 0.0;
+    double p99_alloc_latency_ns = 0.0;
+    double p99_dealloc_latency_ns = 0.0;
 
     void clear() {
         total_allocs = 0;
@@ -58,26 +74,38 @@ struct Stats {
         p99_dealloc_latency_ns = 0.0;
     }
 
-    Stats& operator+=(const Stats& other) {
-        total_allocs += other.total_allocs.load();
-        successful_allocs += other.successful_allocs.load();
-        failed_allocs += other.failed_allocs.load();
-        total_deallocs += other.total_deallocs.load();
-        total_alloc_latency_ns += other.total_alloc_latency_ns.load();
-        total_dealloc_latency_ns += other.total_dealloc_latency_ns.load();
-        peak_memory_usage = std::max(peak_memory_usage.load(), other.peak_memory_usage.load());
+    // 从线程安全版本更新数据
+    void update_from_thread_safe(const ThreadSafeStats& ts_stats) {
+        total_allocs = ts_stats.total_allocs.load();
+        successful_allocs = ts_stats.successful_allocs.load();
+        failed_allocs = ts_stats.failed_allocs.load();
+        total_deallocs = ts_stats.total_deallocs.load();
+        total_alloc_latency_ns = ts_stats.total_alloc_latency_ns.load();
+        total_dealloc_latency_ns = ts_stats.total_dealloc_latency_ns.load();
+        peak_memory_usage = ts_stats.peak_memory_usage.load();
         
-        std::lock_guard<std::mutex> lock(latency_mutex);
-        if (!alloc_latencies.empty() && !other.alloc_latencies.empty()) {
-            alloc_latencies.insert(alloc_latencies.end(), 
-                                 other.alloc_latencies.begin(), 
-                                 other.alloc_latencies.end());
+        {
+            std::lock_guard<std::mutex> lock(ts_stats.latency_mutex);
+            alloc_latencies = ts_stats.alloc_latencies;
+            dealloc_latencies = ts_stats.dealloc_latencies;
         }
-        if (!dealloc_latencies.empty() && !other.dealloc_latencies.empty()) {
-            dealloc_latencies.insert(dealloc_latencies.end(),
-                                   other.dealloc_latencies.begin(),
-                                   other.dealloc_latencies.end());
-        }
+    }
+
+    Stats& operator+=(const Stats& other) {
+        total_allocs += other.total_allocs;
+        successful_allocs += other.successful_allocs;
+        failed_allocs += other.failed_allocs;
+        total_deallocs += other.total_deallocs;
+        total_alloc_latency_ns += other.total_alloc_latency_ns;
+        total_dealloc_latency_ns += other.total_dealloc_latency_ns;
+        peak_memory_usage = std::max(peak_memory_usage, other.peak_memory_usage);
+        
+        alloc_latencies.insert(alloc_latencies.end(), 
+                             other.alloc_latencies.begin(), 
+                             other.alloc_latencies.end());
+        dealloc_latencies.insert(dealloc_latencies.end(),
+                               other.dealloc_latencies.begin(),
+                               other.dealloc_latencies.end());
         return *this;
     }
 };
@@ -98,7 +126,7 @@ void worker_thread(
     const std::vector<Operation>& operations,
     AllocFunc allocate_func,
     DeallocFunc deallocate_func,
-    Stats& global_stats)
+    ThreadSafeStats& global_stats)
 {
     size_t local_allocs = 0;
     size_t local_successful_allocs = 0;
@@ -125,17 +153,17 @@ void worker_thread(
             try {
                 ptr = allocate_func(op.size);
                 if (ptr) {
-                    success = true;
+                   success = true;
                 }
             } catch (const std::bad_alloc&) {
                 success = false;
-                ptr = nullptr;
+                 ptr = nullptr;
             } catch (const std::exception&) {
                 success = false;
-                ptr = nullptr;
+                 ptr = nullptr;
             } catch (...) {
-                success = false;
-                ptr = nullptr;
+                 success = false;
+                 ptr = nullptr;
             }
             auto alloc_end = std::chrono::high_resolution_clock::now();
             auto latency = std::chrono::duration_cast<std::chrono::nanoseconds>(alloc_end - alloc_start).count();
@@ -147,7 +175,7 @@ void worker_thread(
                 allocations.push_back({ptr, op.size});
                 local_current_memory += op.size;
                 if (local_current_memory > local_peak_memory) {
-                    local_peak_memory = local_current_memory;
+                     local_peak_memory = local_current_memory;
                 }
             } else {
                 local_failed_allocs++;
@@ -217,7 +245,7 @@ void worker_thread(
     }
 }
 
-// 计算P99延迟
+// 修改calculate_p99_latency函数
 double calculate_p99_latency(std::vector<long long>& latencies) {
     if (latencies.empty()) return 0.0;
     std::sort(latencies.begin(), latencies.end());
@@ -233,8 +261,8 @@ void run_benchmark(const std::string& name,
                   DeallocFunc deallocate_func,
                   Stats& stats)
 {
+    ThreadSafeStats thread_safe_stats;
     std::vector<std::thread> threads;
-    stats.clear();
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
@@ -245,7 +273,7 @@ void run_benchmark(const std::string& name,
                            std::ref(ops_per_thread[i]),
                            allocate_func,
                            deallocate_func,
-                           std::ref(stats));
+                           std::ref(thread_safe_stats));
     }
 
     // 等待所有线程完成
@@ -257,24 +285,33 @@ void run_benchmark(const std::string& name,
     stats.total_duration_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
         end_time - start_time).count();
 
+    // 从线程安全版本更新数据
+    stats.update_from_thread_safe(thread_safe_stats);
+
     // 计算最终统计数据
     stats.ops_per_sec = (stats.successful_allocs + stats.total_deallocs) * 1000.0 / stats.total_duration_ms;
+    
+    // 计算P99延迟
+    if (!stats.alloc_latencies.empty()) {
     stats.p99_alloc_latency_ns = calculate_p99_latency(stats.alloc_latencies);
+    }
+    if (!stats.dealloc_latencies.empty()) {
     stats.p99_dealloc_latency_ns = calculate_p99_latency(stats.dealloc_latencies);
+    }
 
     // 输出结果
     std::cout << "\n=== " << name << " Performance Report ===\n"
               << std::fixed << std::setprecision(2)
               << "Operations per Second: " << stats.ops_per_sec << " Ops/Sec\n"
               << "Average Allocation Latency: " 
-              << (stats.successful_allocs > 0 ? static_cast<double>(stats.total_alloc_latency_ns.load()) / stats.successful_allocs : 0.0)
+              << (stats.successful_allocs > 0 ? static_cast<double>(stats.total_alloc_latency_ns) / stats.successful_allocs : 0.0)
               << " ns\n"
               << "P99 Allocation Latency: " << stats.p99_alloc_latency_ns << " ns\n"
               << "Average Deallocation Latency: "
-              << (stats.total_deallocs > 0 ? static_cast<double>(stats.total_dealloc_latency_ns.load()) / stats.total_deallocs : 0.0)
+              << (stats.total_deallocs > 0 ? static_cast<double>(stats.total_dealloc_latency_ns) / stats.total_deallocs : 0.0)
               << " ns\n"
               << "P99 Deallocation Latency: " << stats.p99_dealloc_latency_ns << " ns\n"
-              << "Peak Memory: " << (stats.peak_memory_usage.load() / (1024.0 * 1024.0)) << " MB\n"
+              << "Peak Memory: " << (stats.peak_memory_usage / (1024.0 * 1024.0)) << " MB\n"
               << "Successful Allocations: " << stats.successful_allocs << "\n"
               << "Failed Allocations: " << stats.failed_allocs << "\n"
               << "Successful Deallocations: " << stats.total_deallocs << "\n";
@@ -317,10 +354,225 @@ void print_comparison_line(const std::string& metric,
                          higher_is_better);
 }
 
+// 添加新的统计结构
+struct AggregatedStats {
+    std::vector<Stats> runs;
+    Stats average;
+    Stats stddev;
+
+    void calculate_statistics() {
+        if (runs.empty()) return;
+        
+        // 重置平均值和标准差
+        average.clear();
+        stddev.clear();
+
+        // 计算平均值
+        for (const auto& run : runs) {
+            average.ops_per_sec += run.ops_per_sec;
+            average.total_alloc_latency_ns += run.total_alloc_latency_ns;
+            average.total_dealloc_latency_ns += run.total_dealloc_latency_ns;
+            average.peak_memory_usage += run.peak_memory_usage;
+            average.successful_allocs += run.successful_allocs;
+            average.failed_allocs += run.failed_allocs;
+            average.total_deallocs += run.total_deallocs;
+            average.p99_alloc_latency_ns += run.p99_alloc_latency_ns;
+            average.p99_dealloc_latency_ns += run.p99_dealloc_latency_ns;
+        }
+
+        double n = static_cast<double>(runs.size());
+        average.ops_per_sec /= n;
+        average.total_alloc_latency_ns /= n;
+        average.total_dealloc_latency_ns /= n;
+        average.peak_memory_usage /= n;
+        average.successful_allocs /= n;
+        average.failed_allocs /= n;
+        average.total_deallocs /= n;
+        average.p99_alloc_latency_ns /= n;
+        average.p99_dealloc_latency_ns /= n;
+
+        // 计算标准差
+        for (const auto& run : runs) {
+            stddev.ops_per_sec += std::pow(run.ops_per_sec - average.ops_per_sec, 2);
+            stddev.total_alloc_latency_ns += std::pow(
+                static_cast<double>(run.total_alloc_latency_ns - average.total_alloc_latency_ns), 2);
+            stddev.total_dealloc_latency_ns += std::pow(
+                static_cast<double>(run.total_dealloc_latency_ns - average.total_dealloc_latency_ns), 2);
+            stddev.p99_alloc_latency_ns += std::pow(
+                run.p99_alloc_latency_ns - average.p99_alloc_latency_ns, 2);
+            stddev.p99_dealloc_latency_ns += std::pow(
+                run.p99_dealloc_latency_ns - average.p99_dealloc_latency_ns, 2);
+        }
+
+        stddev.ops_per_sec = std::sqrt(stddev.ops_per_sec / n);
+        stddev.total_alloc_latency_ns = std::sqrt(
+            static_cast<double>(stddev.total_alloc_latency_ns) / n);
+        stddev.total_dealloc_latency_ns = std::sqrt(
+            static_cast<double>(stddev.total_dealloc_latency_ns) / n);
+        stddev.p99_alloc_latency_ns = std::sqrt(stddev.p99_alloc_latency_ns / n);
+        stddev.p99_dealloc_latency_ns = std::sqrt(stddev.p99_dealloc_latency_ns / n);
+    }
+};
+
+// 清理系统缓存的函数
+void clear_system_caches() {
+    if (!CLEAR_CACHE_BETWEEN_RUNS) return;
+    
+    std::cout << "Clearing system caches... ";
+    if (system("sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null") != 0) {
+        std::cout << "failed (requires root privileges)\n";
+    } else {
+        std::cout << "done\n";
+    }
+    std::this_thread::sleep_for(std::chrono::seconds(2));  // 等待系统稳定
+}
+
+// 修改运行基准测试函数，支持多次运行
+template <typename AllocFunc, typename DeallocFunc>
+AggregatedStats run_benchmark_multiple(
+    const std::string& name,
+    const std::vector<std::vector<Operation>>& ops_per_thread,
+    AllocFunc allocate_func,
+    DeallocFunc deallocate_func)
+{
+    AggregatedStats agg_stats;
+    
+    for (unsigned int run = 0; run < NUM_RUNS; ++run) {
+        std::cout << "\nRun " << (run + 1) << "/" << NUM_RUNS << " for " << name << "...\n";
+        
+        if (run > 0) {  // 第一次运行前不清理缓存
+            clear_system_caches();
+        }
+
+        Stats run_stats;
+        run_benchmark(name, ops_per_thread, allocate_func, deallocate_func, run_stats);
+        agg_stats.runs.push_back(run_stats);
+    }
+
+    agg_stats.calculate_statistics();
+    return agg_stats;
+}
+
+// 修改print_results_table函数
+void print_results_table(const AggregatedStats& pool_stats,
+                        const AggregatedStats& malloc_stats,
+                        const AggregatedStats& pmr_stats)
+{
+    auto to_us = [](double ns) { return ns / 1000.0; };
+    auto to_mb = [](size_t bytes) { return bytes / (1024.0 * 1024.0); };
+    auto calc_ratio = [](double pool_val, double malloc_val) {
+        return malloc_val != 0 ? pool_val / malloc_val : 0.0;
+    };
+
+    std::cout << "\n--- 基准测试结果对比 ---\n";
+    std::cout << std::left << std::setw(35) << "指标"
+              << " | " << std::setw(20) << "自定义内存池"
+              << " | " << std::setw(20) << "malloc/free"
+              << " | " << std::setw(20) << "std::pmr::sync"
+              << " | " << std::setw(15) << "内存池/malloc" << " |\n";
+    std::cout << std::string(120, '-') << "\n";
+
+    // 每秒操作数
+    double ops_ratio = calc_ratio(pool_stats.average.ops_per_sec, malloc_stats.average.ops_per_sec);
+    std::cout << std::left << std::setw(35) << "每秒操作数 (Ops/Sec,越高越好)"
+              << " | " << std::setw(20) << std::fixed << std::setprecision(2) 
+              << pool_stats.average.ops_per_sec
+              << " | " << std::setw(20) << malloc_stats.average.ops_per_sec
+              << " | " << std::setw(20) << pmr_stats.average.ops_per_sec
+              << " | " << std::setw(15) << ops_ratio << "x |\n";
+
+    std::cout << std::string(120, '-') << "\n";
+
+    // 延迟指标
+    auto print_latency = [&](const std::string& name, 
+                            double pool_lat,
+                            double malloc_lat,
+                            double pmr_lat,
+                            bool use_ns = false) {
+        double ratio = calc_ratio(pool_lat, malloc_lat);
+        std::cout << std::left << std::setw(35) << name
+                  << " | " << std::setw(20) << std::fixed << std::setprecision(2)
+                  << (use_ns ? pool_lat : to_us(pool_lat))
+                  << " | " << std::setw(20) << (use_ns ? malloc_lat : to_us(malloc_lat))
+                  << " | " << std::setw(20) << (use_ns ? pmr_lat : to_us(pmr_lat))
+                  << " | " << std::setw(15) << ratio << "x |\n";
+    };
+
+    // 平均分配延迟
+    double pool_avg_alloc = pool_stats.average.total_alloc_latency_ns / pool_stats.average.successful_allocs;
+    double malloc_avg_alloc = malloc_stats.average.total_alloc_latency_ns / malloc_stats.average.successful_allocs;
+    double pmr_avg_alloc = pmr_stats.average.total_alloc_latency_ns / pmr_stats.average.successful_allocs;
+    print_latency("平均分配延迟 (us, 越低越好)",
+                  pool_avg_alloc,
+                  malloc_avg_alloc,
+                  pmr_avg_alloc);
+
+    // P99分配延迟 (以ns为单位)
+    print_latency("P99 分配延迟 (ns, 越低越好)",
+                  pool_stats.average.p99_alloc_latency_ns,
+                  malloc_stats.average.p99_alloc_latency_ns,
+                  pmr_stats.average.p99_alloc_latency_ns,
+                  true);
+
+    // 平均释放延迟
+    double pool_avg_dealloc = pool_stats.average.total_dealloc_latency_ns / pool_stats.average.total_deallocs;
+    double malloc_avg_dealloc = malloc_stats.average.total_dealloc_latency_ns / malloc_stats.average.total_deallocs;
+    double pmr_avg_dealloc = pmr_stats.average.total_dealloc_latency_ns / pmr_stats.average.total_deallocs;
+    print_latency("平均释放延迟 (us, 越低越好)",
+                  pool_avg_dealloc,
+                  malloc_avg_dealloc,
+                  pmr_avg_dealloc);
+
+    // P99释放延迟 (以ns为单位)
+    print_latency("P99 释放延迟 (ns, 越低越好)",
+                  pool_stats.average.p99_dealloc_latency_ns,
+                  malloc_stats.average.p99_dealloc_latency_ns,
+                  pmr_stats.average.p99_dealloc_latency_ns,
+                  true);
+
+    std::cout << std::string(120, '-') << "\n";
+
+    // 内存使用指标
+    auto print_metric = [&](const std::string& name, 
+                           double pool_val,
+                           double malloc_val,
+                           double pmr_val) {
+        double ratio = calc_ratio(pool_val, malloc_val);
+        std::cout << std::left << std::setw(35) << name
+                  << " | " << std::setw(20) << std::fixed << std::setprecision(2) << pool_val
+                  << " | " << std::setw(20) << malloc_val
+                  << " | " << std::setw(20) << pmr_val
+                  << " | " << std::setw(15) << ratio << "x |\n";
+    };
+
+    print_metric("峰值内存 (MB, 线程峰值和)",
+                 to_mb(pool_stats.average.peak_memory_usage),
+                 to_mb(malloc_stats.average.peak_memory_usage),
+                 to_mb(pmr_stats.average.peak_memory_usage));
+
+    print_metric("成功分配次数",
+                 pool_stats.average.successful_allocs,
+                 malloc_stats.average.successful_allocs,
+                 pmr_stats.average.successful_allocs);
+
+    print_metric("失败分配次数",
+                 pool_stats.average.failed_allocs,
+                 malloc_stats.average.failed_allocs,
+                 pmr_stats.average.failed_allocs);
+
+    print_metric("成功释放次数",
+                 pool_stats.average.total_deallocs,
+                 malloc_stats.average.total_deallocs,
+                 pmr_stats.average.total_deallocs);
+
+}
+
+// 修改main函数
 int main() {
     try {
         std::cout << "\n=== Memory Allocator Performance Benchmark ===\n"
-                  << "Threads: " << NUM_THREADS << "\n"
+                  << "Number of runs: " << NUM_RUNS << "\n"
+                  << "Threads per run: " << NUM_THREADS << "\n"
                   << "Operations per thread: " << NUM_OPERATIONS_PER_THREAD << "\n"
                   << "Allocation size range: " << MIN_ALLOC_SIZE << " - " << MAX_ALLOC_SIZE << " bytes\n"
                   << "Allocation percentage: " << ALLOC_PERCENTAGE << "%\n\n";
@@ -342,8 +594,8 @@ int main() {
             }
         }
 
-        // 分别运行各个测试，每个测试都用try-catch包围
-        Stats pool_stats, malloc_stats, pmr_stats;
+        // 运行测试
+        AggregatedStats pool_stats, malloc_stats, pmr_stats;
         bool pool_success = false, malloc_success = false, pmr_success = false;
 
         // 测试内存池
@@ -355,12 +607,11 @@ int main() {
             auto memory_pool_dealloc = [](void* p, size_t s) {
                 if (p) memory_pool::memory_pool::deallocate(p, s);
             };
-            run_benchmark("Memory Pool", ops_per_thread, memory_pool_alloc, memory_pool_dealloc, pool_stats);
+            pool_stats = run_benchmark_multiple("Memory Pool", ops_per_thread,
+                                             memory_pool_alloc, memory_pool_dealloc);
             pool_success = true;
         } catch (const std::exception& e) {
             std::cerr << "Memory Pool test failed: " << e.what() << std::endl;
-        } catch (...) {
-            std::cerr << "Memory Pool test failed with unknown error" << std::endl;
         }
 
         // 测试标准 malloc/free
@@ -371,17 +622,16 @@ int main() {
             auto malloc_dealloc = [](void* p, size_t) {
                 if (p) free(p);
             };
-            run_benchmark("Standard malloc/free", ops_per_thread, malloc_alloc, malloc_dealloc, malloc_stats);
+            malloc_stats = run_benchmark_multiple("Standard malloc/free", ops_per_thread,
+                                               malloc_alloc, malloc_dealloc);
             malloc_success = true;
         } catch (const std::exception& e) {
             std::cerr << "Malloc test failed: " << e.what() << std::endl;
-        } catch (...) {
-            std::cerr << "Malloc test failed with unknown error" << std::endl;
         }
 
         // 测试PMR
         try {
-            std::pmr::monotonic_buffer_resource upstream(1024 * 1024); // 1MB initial block
+            std::pmr::monotonic_buffer_resource upstream(1024 * 1024);
             std::pmr::synchronized_pool_resource resource(&upstream);
             
             auto pmr_alloc = [&resource](size_t size) -> void* {
@@ -394,115 +644,22 @@ int main() {
             auto pmr_dealloc = [&resource](void* p, size_t size) {
                 if (p) resource.deallocate(p, size, DEFAULT_ALIGNMENT);
             };
-            run_benchmark("PMR", ops_per_thread, pmr_alloc, pmr_dealloc, pmr_stats);
+            pmr_stats = run_benchmark_multiple("PMR", ops_per_thread,
+                                            pmr_alloc, pmr_dealloc);
             pmr_success = true;
         } catch (const std::exception& e) {
             std::cerr << "PMR test failed: " << e.what() << std::endl;
-        } catch (...) {
-            std::cerr << "PMR test failed with unknown error" << std::endl;
         }
 
         // 如果至少有两个测试成功，打印比较结果
         if ((pool_success ? 1 : 0) + (malloc_success ? 1 : 0) + (pmr_success ? 1 : 0) >= 2) {
-            std::cout << "\n=== Performance Comparison ===\n";
-            std::cout << std::left << std::setw(25) << "Metric"
-                      << std::right;
-            if (pool_success) std::cout << std::setw(15) << "Memory Pool";
-            if (malloc_success) std::cout << std::setw(15) << "malloc/free";
-            if (pmr_success) std::cout << std::setw(15) << "PMR";
-            std::cout << std::setw(25) << " (vs malloc)\n";
-            std::cout << std::string(95, '-') << "\n";
-
-            // 辅助lambda用于安全打印
-            auto safe_print = [](bool success, double val) {
-                if (success) std::cout << std::setw(15) << std::fixed << std::setprecision(2) << val;
-                else std::cout << std::setw(15) << "N/A";
-            };
-
-            auto print_metric = [&](const std::string& metric, const std::string& unit,
-                                  double pool_val, double malloc_val, double pmr_val,
-                                  bool higher_is_better = true) {
-                std::cout << std::left << std::setw(25) << metric;
-                safe_print(pool_success, pool_val);
-                safe_print(malloc_success, malloc_val);
-                safe_print(pmr_success, pmr_val);
-                std::cout << " " << unit;
-                
-                if (malloc_success && pool_success) {
-                    double pool_vs_malloc = (pool_val / malloc_val - 1.0) * 100.0;
-                    std::cout << std::setw(20)
-                              << ((higher_is_better && pool_vs_malloc > 0) || 
-                                 (!higher_is_better && pool_vs_malloc < 0) ? "+" : "")
-                              << pool_vs_malloc << "%";
-                }
-                std::cout << "\n";
-            };
-
-            print_metric("Operations/sec", "ops",
-                        pool_stats.ops_per_sec,
-                        malloc_stats.ops_per_sec,
-                        pmr_stats.ops_per_sec);
-
-            print_metric("Avg alloc latency", "ns",
-                        pool_stats.successful_allocs > 0 ? 
-                        static_cast<double>(pool_stats.total_alloc_latency_ns.load()) / pool_stats.successful_allocs : 0.0,
-                        malloc_stats.successful_allocs > 0 ? 
-                        static_cast<double>(malloc_stats.total_alloc_latency_ns.load()) / malloc_stats.successful_allocs : 0.0,
-                        pmr_stats.successful_allocs > 0 ? 
-                        static_cast<double>(pmr_stats.total_alloc_latency_ns.load()) / pmr_stats.successful_allocs : 0.0,
-                        false);
-
-            print_metric("P99 alloc latency", "ns",
-                        pool_stats.p99_alloc_latency_ns,
-                        malloc_stats.p99_alloc_latency_ns,
-                        pmr_stats.p99_alloc_latency_ns,
-                        false);
-
-            print_metric("Avg dealloc latency", "ns",
-                        pool_stats.total_deallocs > 0 ? 
-                        static_cast<double>(pool_stats.total_dealloc_latency_ns.load()) / pool_stats.total_deallocs : 0.0,
-                        malloc_stats.total_deallocs > 0 ? 
-                        static_cast<double>(malloc_stats.total_dealloc_latency_ns.load()) / malloc_stats.total_deallocs : 0.0,
-                        pmr_stats.total_deallocs > 0 ? 
-                        static_cast<double>(pmr_stats.total_dealloc_latency_ns.load()) / pmr_stats.total_deallocs : 0.0,
-                        false);
-
-            print_metric("P99 dealloc latency", "ns",
-                        pool_stats.p99_dealloc_latency_ns,
-                        malloc_stats.p99_dealloc_latency_ns,
-                        pmr_stats.p99_dealloc_latency_ns,
-                        false);
-
-            print_metric("Peak memory", "MB",
-                        pool_stats.peak_memory_usage.load() / (1024.0 * 1024.0),
-                        malloc_stats.peak_memory_usage.load() / (1024.0 * 1024.0),
-                        pmr_stats.peak_memory_usage.load() / (1024.0 * 1024.0),
-                        false);
-
-            print_metric("Successful allocs", "",
-                        static_cast<double>(pool_stats.successful_allocs),
-                        static_cast<double>(malloc_stats.successful_allocs),
-                        static_cast<double>(pmr_stats.successful_allocs));
-
-            print_metric("Failed allocs", "",
-                        static_cast<double>(pool_stats.failed_allocs),
-                        static_cast<double>(malloc_stats.failed_allocs),
-                        static_cast<double>(pmr_stats.failed_allocs),
-                        false);
-
-            print_metric("Successful deallocs", "",
-                        static_cast<double>(pool_stats.total_deallocs),
-                        static_cast<double>(malloc_stats.total_deallocs),
-                        static_cast<double>(pmr_stats.total_deallocs));
+            print_results_table(pool_stats, malloc_stats, pmr_stats);
         } else {
             std::cerr << "\nNot enough successful tests to make meaningful comparisons.\n";
         }
 
     } catch (const std::exception& e) {
         std::cerr << "Program failed: " << e.what() << std::endl;
-        return 1;
-    } catch (...) {
-        std::cerr << "Program failed with unknown error" << std::endl;
         return 1;
     }
 

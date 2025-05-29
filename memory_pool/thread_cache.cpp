@@ -20,6 +20,7 @@ namespace memory_pool
 
         // 将memory_size的大小对齐到8字节
         memory_size = size_utils::align(memory_size);
+        //大内存直接交给下一层
         if (memory_size > size_utils::MAX_CACHED_UNIT_SIZE)
         {
             return allocate_from_central_cache(memory_size).and_then([](std::byte *memory_addr)
@@ -27,6 +28,7 @@ namespace memory_pool
         }
 
         const size_t index = size_utils::get_index(memory_size);
+        // 如果当前的空闲链表中存在，则从空闲链表中取
         if (m_free_cache[index] != nullptr)
         {
 
@@ -34,9 +36,9 @@ namespace memory_pool
             m_free_cache[index] = *(reinterpret_cast<std::byte **>(result));
 
             m_free_cache_size[index]--;
-            // 在release模式下会被移除，这个只用于检测代码是否有问题
             return result;
         }
+        //否则从中心缓存层申请
         return allocate_from_central_cache(memory_size).and_then([](std::byte *memory_addr)
                                                                  { return std::optional<void *>(memory_addr); });
     }
@@ -77,10 +79,9 @@ namespace memory_pool
                 assert(last_node_to_remove != nullptr);
                 if (*(reinterpret_cast<std::byte **>(last_node_to_remove)) == nullptr)
                 {
-                    // 如果链表提前结束，说明 m_free_cache_size[index] 计数有误，这是另一个严重问题
-                    // 或者 deallocate_block_size 计算逻辑在这种边界条件下有问题
+                    // 如果链表提前结束，说明 m_free_cache_size[index] 计数有误，这是严重问题
                     assert(false && "Free list is shorter than expected size count!");
-                    // 在 release 版本中，可能需要采取恢复措施或记录错误
+                    // 可能需要采取恢复措施或记录错误
                     return; // 暂时返回，避免崩溃
                 }
                 last_node_to_remove = *(reinterpret_cast<std::byte **>(last_node_to_remove));
@@ -104,8 +105,10 @@ namespace memory_pool
     }
 
     std::optional<std::byte *> thread_cache::allocate_from_central_cache(size_t memory_size)
-    {
+    {   
+        //计算申请块数
         size_t block_count = compute_allocate_count(memory_size);
+        //将参数传递给中心缓存层
         return central_cache::GetInstance().allocate(memory_size, block_count).transform([this, memory_size, block_count](std::byte *memory_list)
                                                                                          {
             size_t index = size_utils::get_index(memory_size);
@@ -117,18 +120,20 @@ namespace memory_pool
             }
 
             assert(list_size == block_count);
+            //将申请到的内存块挂到空闲链表上
             *(reinterpret_cast<std::byte**>(list_end)) = m_free_cache[index];
             // 将链表指向下一个结点，第一个结点要传出去
             m_free_cache[index] = *reinterpret_cast<std::byte**>(memory_list);
             m_free_cache_size[index] += block_count - 1;
-            return memory_list; });
+            return memory_list;
+         });
     }
 
     size_t thread_cache::compute_allocate_count(size_t memory_size)
     {
         // 获取其下标
         size_t index = size_utils::get_index(memory_size);
-
+        //大内存
         if (index >= size_utils::CACHE_LINE_SIZE)
         {
             return 1;

@@ -23,7 +23,7 @@ namespace memory_pool {
         }
 
         if (memory_size > size_utils::MAX_CACHED_UNIT_SIZE) {
-            return page_cache::get_instance().allocate_unit(memory_size).transform([this](memory_span memory) {
+            return page_cache::GetInstance().allocate_unit(memory_size).transform([this](memory_span memory) {
                 return memory.data();
             });
         }
@@ -124,7 +124,7 @@ namespace memory_pool {
 
         if (memory_size > size_utils::MAX_CACHED_UNIT_SIZE) {
             // 如果是超大内存块，则直接返回给page_cache管理
-            page_cache::get_instance().deallocate_unit(memory_span(memory_list, memory_size));
+            page_cache::GetInstance().deallocate_unit(memory_span(memory_list, memory_size));
             return;
         }
 
@@ -194,7 +194,7 @@ namespace memory_pool {
                 m_next_allocate_memory_group_count[index] /= 2;
 #endif
 
-                page_cache::get_instance().deallocate_page(page_memory);
+                page_cache::GetInstance().deallocate_page(page_memory);
             }
             current_memory = next_node_to_add;
         }
@@ -227,6 +227,6 @@ namespace memory_pool {
     }
 
     std::optional<memory_span> central_cache::get_page_from_page_cache(size_t page_allocate_count) {
-        return page_cache::get_instance().allocate_page(page_allocate_count);
+        return page_cache::GetInstance().allocate_page(page_allocate_count);
     }
 }

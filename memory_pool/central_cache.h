@@ -27,20 +27,20 @@ namespace memory_pool
             return instance;
         }
 
-        /// 用于分配指向个数的指向大小的空间
-        /// 参数：memory_size: 要申请的大小 block_count: 申请的个数
-        /// 返回值：返回一组相同大小的指定个数的内存块
+        // 用于分配指向个数的指向大小的空间
+        // 参数：memory_size: 要申请的大小 block_count: 申请的个数
+        // 返回值：返回一组相同大小的指定个数的内存块
         std::optional<std::byte *> allocate(size_t memory_size, size_t block_count);
 
-        /// 回收内存块
-        /// 参数memory: 从线程缓存池中回收的内存碎片
-        /// 注意点：这一个列表中，每一个内存块大小必须是一样的。
+        // 回收内存块
+        // 参数memory: 从线程缓存池中回收的内存碎片
+        // 注意点：这一个列表中，每一个内存块大小必须是一样的。
         void deallocate(std::byte *memory_list, size_t memory_size);
 
     private:
         size_t get_page_allocate_count(size_t memory_size);
 
-        /// 将分配出去的内存块记录下来
+        // 将分配出去的内存块记录下来
         void record_allocated_memory_span(std::byte *memory, const size_t memory_size);
 
         std::optional<memory_span> get_page_from_page_cache(size_t page_allocate_count);
