@@ -11,7 +11,7 @@
 
 namespace memory_pool
 {
-
+    // 自旋锁
     class atomic_flag_guard
     {
     public:

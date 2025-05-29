@@ -9162,7 +9162,7 @@ fn=(3606) memory_pool::memory_pool::deallocate(void*, unsigned long)
 22 15822
 +1 2637
 cfi=(310) /home/wei/cpp/mymemorypool/memory_pool/thread_cache.h
-cfn=(2676) memory_pool::thread_cache::get_instance()
+cfn=(2676) memory_pool::thread_cache::GetInstance()
 calls=2637 * 
 * 18459
 * 15822
@@ -9674,7 +9674,7 @@ fn=(2732) memory_pool::central_cache::get_page_from_page_cache(unsigned long)
 229 5080
 +1 508
 cfi=(318) /home/wei/cpp/mymemorypool/memory_pool/page_cache.h
-cfn=(2734) memory_pool::page_cache::get_instance()
+cfn=(2734) memory_pool::page_cache::GetInstance()
 calls=508 20 
 * 5988
 * 3048
@@ -15317,7 +15317,7 @@ calls=1 +75
 * 176148
 * 3
 
-fn=(2692) memory_pool::central_cache::get_instance()
+fn=(2692) memory_pool::central_cache::GetInstance()
 23 5406
 +1 9013
 cob=(2)
